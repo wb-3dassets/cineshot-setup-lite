@@ -104,7 +104,8 @@ All values are relative to the pose at the start of the key.\par
 {\b Crane (m)} - raises or lowers the camera while keeping the target framed.\line
 {\b Roll, Yaw, Tilt (degrees)} - rotate the camera itself.\line
 {\b Duration (s)} - how long this key takes to play.\line
-{\b Keep View (selected key)} - keeps the framing locked on the target while the camera travels.\par
+{\b Dragging and precision} - the four metre sliders (Pan side, Pan up/down, Pan forward/backward, Crane) work on a grid of 0.01 m, one step per mouse pixel, so they never show more than two decimals. Hold Shift while dragging any slider to cover ten times the distance. The number field next to a slider always takes a typed value.\line
+{\b Keep View (selected key)} - Orbit, Orbit vertical and Crane stop snapping the view onto the target. Your current framing is carried along instead, so the move continues exactly from the previous image. Tick it BEFORE you pick a target. With Keep View on, the pivot is placed on the camera's view axis at the depth of the picked object: it sits centred in frame, the camera keeps your framing and the sliders at 0 show exactly the view you had. With Keep View off the pivot goes to the object's geometric centre and the camera turns onto it the moment you pick, so the sliders at 0 already show the centred view. Either way nothing jumps once you start moving a slider.\par
 \pard\sa140\li0
 
 \b\fs28 9. Keys and the timeline\b0\fs22\par
@@ -161,7 +162,7 @@ Baking writes a normal AnimationClip and an AnimatorController onto the camera, 
 {\b Bake FPS} - the sampling rate of the baked clip.\line
 {\b Output} - the folder the clip and controller are written to. It is created if it does not exist.\line
 {\b The button adapts:} with no sequence it reads "Bake Camera Animation" and bakes the selected camera. With shots in the sequence it reads "Bake Trailer Animation" and bakes the whole trailer onto a generated camera called CineShot Trailer Camera, which it then activates so it is the one you record.\line
-{\b The status light} next to the button: red means nothing has been baked yet, yellow means you changed something since the last bake, green means the bake is current.\line
+{\b The status light} next to the button: red means nothing has been baked yet, yellow means you changed something since the last bake, green means the bake is current. It also turns red when the result of the last bake is gone, that is when you delete the "CineShot Trailer Camera" or throw the generated clip out of the Animations folder, because there would be nothing left to record. Undo such a deletion and the light returns to green on its own.\line
 {\b The line below} shows the exact length and frame count of the baked clip. That frame count is the number the Recorder wants as its end frame.\par
 \pard\sa140\li0
 
@@ -169,7 +170,7 @@ Baking writes a normal AnimationClip and an AnimatorController onto the camera, 
 Recording is done by Unity's Recorder, not by CineShot, so you keep full control over format and quality.\par
 \pard\sa40\li360
 16.1  Bake first (step 1). The status light must be green.\line
-16.2  Press {\b Open Recorder}. Unity's Recorder window comes up. If the status light was red or yellow, CineShot warns you first, because you would otherwise record the wrong camera or an outdated clip.\line
+16.2  Press {\b Open Recorder}. Unity's Recorder window comes up. If the status light was red or yellow, CineShot warns you first, because you would otherwise record the wrong camera or an outdated clip. With a green light it also makes the camera you are about to record the live one: for a trailer the "CineShot Trailer Camera" is switched on, for a single camera a leftover trailer camera is switched off so it cannot outrank yours.\line
 16.3  In the Recorder window set your output folder, format, resolution and frame rate, enter the frame count from step 1 as the end frame, and press Record.\par
 \pard\sa140\li0
 CineShot never changes your Recorder settings. It only opens the window.\par

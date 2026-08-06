@@ -74,9 +74,12 @@ folder must keep its `.uxml` and `.uss` next to the assembly.
    Shake/Noise per key.
 5. **Step 1: Bake** writes an AnimationClip + Animator and activates the trailer camera. The status
    light next to the button turns green when the bake is up to date (red = not baked yet, yellow =
-   changed since the last bake).
-6. **Step 2: Open Recorder** opens Unity's Recorder window. Enter the frame count shown under the
-   button as the end frame and record your MP4.
+   changed since the last bake). It drops back to red if you later delete the "CineShot Trailer
+   Camera" or the generated clip, because there would be nothing left to record.
+6. **Step 2: Open Recorder** opens Unity's Recorder window and makes the camera you are about to
+   record the live one: for a trailer it switches the "CineShot Trailer Camera" on, for a single
+   camera it switches a leftover trailer camera off so it cannot outrank yours. Enter the frame
+   count shown under the button as the end frame and record your MP4.
 
 For a two-camera trailer: select both cameras, press **+ Add selected cameras** in the **SEQUENCE**
 card, then click the green **+** between the two camera keys to insert a transition (Linear /
@@ -140,6 +143,11 @@ The Unity Recorder package is missing. Hover the button, the tooltip says so.
 **I pressed Open Recorder and got a warning first.**
 The bake status light was red or yellow: red means nothing has been baked yet, yellow means you
 changed something since the last bake. Bake again, then record.
+
+**The status light went red although I baked.**
+The result of that bake is gone: either the "CineShot Trailer Camera" was deleted from the
+Hierarchy, or the generated clip was removed from the Animations folder. Undo the deletion and the
+light goes back to green by itself, otherwise bake again.
 
 **Nothing was recorded, or I sat in Play Mode doing nothing.**
 Recording is driven entirely by Unity's Recorder window, not by CineShot. Open
