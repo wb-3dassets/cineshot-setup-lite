@@ -4,7 +4,7 @@ All notable changes to **CineShot Setup LITE** are documented here.
 
 ## [1.0.0] - Initial release
 
-Camera-move authoring for Unity 6 + Cinemachine 3.
+Camera-move authoring for Unity 6, requires Cinemachine 3.
 
 * **Slider authoring**: 11 relative motion channels (orbit H/V, crane, pan side/forward/up,
   dolly zoom, yaw, tilt, roll, zoom) with fine relative dragging, per-key pose snapshots.

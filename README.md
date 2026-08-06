@@ -1,6 +1,6 @@
 # CineShot Setup LITE
 
-**Free camera-move and trailer authoring for Unity 6 + Cinemachine 3, inside the editor.**
+**Free camera-move and trailer authoring inside the Unity 6 editor. Requires Cinemachine 3.**
 
 Build a camera move with sliders, shape its timing on a key timeline, cut cameras into a sequence
 with transitions and impact shake, bake it to an AnimationClip, then hand it to Unity's Recorder
@@ -50,8 +50,7 @@ everything else (authoring, preview, baking) works normally.
 ## Installation
 
 1. Download `CineShotSetupLITE.unitypackage` from the [latest release](../../releases/latest) and
-   import it via `Assets > Import Package > Custom Package…`, or drop the `CineShot Setup LITE`
-   folder into your project's `Assets/`.
+   import it via `Assets > Import Package > Custom Package…`.
 2. Open `Tools > CineShot Setup LITE`.
 3. Optional, for recording: install **Unity Recorder** via
    `Window > Package Manager > Unity Registry > Recorder`, then configure one Movie recorder in

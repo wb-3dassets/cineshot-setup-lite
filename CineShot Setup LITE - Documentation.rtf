@@ -1,0 +1,226 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat
+{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}{\f1\fmodern\fcharset0 Consolas;}}
+{\colortbl ;\red0\green0\blue0;\red100\green100\blue100;}
+\viewkind4\uc1\pard\sa140\f0\fs22
+
+\pard\qc\sa60\b\fs44 CineShot Setup LITE\b0\fs22\par
+\pard\qc\sa360\fs20\cf2 Free edition \'b7 Camera moves and trailers for Unity 6, requires Cinemachine 3\line Version 1.0 \'b7 Documentation\cf1\fs22\par
+
+\pard\sa140
+\b\fs28 Table of contents\b0\fs22\par
+\pard\sa40\li360
+1. Overview\line
+2. What LITE includes, and what it limits\line
+3. Requirements\line
+4. Installation\line
+5. The tool window at a glance\line
+6. Quick start: your first camera move\line
+7. Choosing a look-at target\line
+8. Move channel reference\line
+9. Keys and the timeline\line
+10. Easing and timing\line
+11. Shake and noise\line
+12. Building a trailer: the sequence\line
+13. Transitions\line
+14. Music\line
+15. Baking to an AnimationClip\line
+16. Recording to video\line
+17. Where your data lives\line
+18. Export and import\line
+19. The demo scenes\line
+20. Troubleshooting\line
+21. Known limitations\line
+22. License and support\par
+\pard\sa140\li0
+
+\b\fs28 1. Overview\b0\fs22\par
+CineShot Setup is an editor tool for building camera moves without keyframing. You position the Scene View, press Set Camera, and shape the shot with sliders: orbit, crane, pan, dolly zoom, roll. Every move you like becomes a key, the sliders reset to zero, and the next move continues from there.\par
+Cameras can be chained into a trailer with transitions and music. The result is baked to a standard AnimationClip and handed to Unity's Recorder for a video file. Everything happens in one dockable window: {\f1 Tools > CineShot Setup LITE}.\par
+
+\b\fs28 2. What LITE includes, and what it limits\b0\fs22\par
+LITE contains {\b every feature} of the full version. Nothing is watermarked, nothing expires, and every function behaves exactly as it does in the paid edition. There are two numeric limits:\par
+\pard\sa40\li360
+{\b Two cameras} created through Set Camera.\line
+{\b Two shots} in a sequence.\par
+\pard\sa140\li0
+The camera limit counts only cameras that already carry a CineShot move. Cinemachine cameras that exist in your scene for other reasons never count against it, so the button keeps working in a populated project. Two cameras and one cut are enough to learn the entire workflow from first move to finished recording. The full version removes both limits and is coming to the Unity Asset Store.\par
+
+\b\fs28 3. Requirements\b0\fs22\par
+\pard\sa40\li360
+{\b Unity:} 6.0 LTS (6000.0) or newer. One build covers all of Unity 6.\line
+{\b Cinemachine 3.x} ({\f1 com.unity.cinemachine}): required. The tool drives {\f1 CinemachineCamera} components and will not run without it.\line
+{\b Unity Recorder} ({\f1 com.unity.recorder}): optional. Without it the Record step is disabled and everything else works normally.\line
+{\b uGUI} ({\f1 com.unity.ugui}): used for the fade-to-black overlay. It ships with every Unity template.\line
+{\b Render pipelines:} Built-in, URP and HDRP. Depth-of-field auto-focus is carried over on HDRP only.\par
+\pard\sa140\li0
+
+\b\fs28 4. Installation\b0\fs22\par
+\pard\sa40\li360
+4.1  Import {\f1 CineShotSetupLITE.unitypackage}, or copy the {\f1 CineShot Setup LITE} folder into your project's {\f1 Assets/}.\line
+4.2  Keep the folder together. You may rename or move it anywhere under {\f1 Assets/}, but the {\f1 Editor} folder must keep its {\f1 .uxml} and {\f1 .uss} next to the assembly.\line
+4.3  Open {\f1 Tools > CineShot Setup LITE}.\line
+4.4  Optional, for recording: install Unity Recorder via {\f1 Window > Package Manager > Unity Registry > Recorder}, then configure one Movie recorder in {\f1 Window > General > Recorder}. CineShot never changes those settings, it only opens the window.\par
+\pard\sa140\li0
+
+\b\fs28 5. The tool window at a glance\b0\fs22\par
+The window is a stack of cards, top to bottom:\par
+\pard\sa40\li360
+{\b CAMERAS} - create a camera, couple or decouple it from the Scene View, toggle the Scene View overlays.\line
+{\b CONTROLS} - the move sliders for the selected camera.\line
+{\b TIMELINE} - the keys of that camera, their duration, easing, reverse and shake.\line
+{\b SEQUENCE (TRAILER)} - cameras chained into one trailer, with transitions.\line
+{\b AUDIO} - an optional music clip.\line
+{\b Bake and Record} - bake FPS, output folder, data export and import, and the two recording steps.\par
+\pard\sa140\li0
+
+\b\fs28 6. Quick start: your first camera move\b0\fs22\par
+\pard\sa40\li360
+6.1  Frame something in the Scene View and press {\b Set Camera}. A CinemachineCamera is created at that position and the tool offers look-at targets (see section 7).\line
+6.2  Drag the {\b CONTROLS} sliders. They are relative tools: they move the live camera away from its start pose, and the Game View follows.\line
+6.3  Press {\b + Add Key}. The pose is stored as a key and the sliders reset to zero, so the next move starts from the pose you just captured.\line
+6.4  Repeat for as many moves as the shot needs.\line
+6.5  Press {\b Play All} to watch the whole timeline, or {\b Play Current} for just the selected key.\par
+\pard\sa140\li0
+
+\b\fs28 7. Choosing a look-at target\b0\fs22\par
+Orbit and crane moves rotate around a pivot, so they need a look-at target. Pan, zoom and the rotation channels work without one.\par
+After Set Camera the tool lists the objects it detected at screen centre, ranked by what the camera actually points at. You have two ways to choose:\par
+\pard\sa40\li360
+{\b From the list:} click one of the green buttons. Hovering a button highlights that object in the Scene View.\line
+{\b Directly in the Scene View:} move the mouse over any object. It highlights green under the cursor. Click it to accept.\par
+\pard\sa140\li0
+The pivot is the centre of the object's combined mesh bounds. Parts of an LOD group resolve to their root object. If you would rather assign the target by hand, press "Skip - assign manually" and set the LookAt field on the camera yourself.\par
+
+\b\fs28 8. Move channel reference\b0\fs22\par
+All values are relative to the pose at the start of the key.\par
+\pard\sa40\li360
+{\b Orbit horizontal (degrees)} - swings around the target, horizontally.\line
+{\b Orbit vertical (degrees)} - swings around the target, vertically.\line
+{\b Pan side (m)} - slides left or right.\line
+{\b Pan up/down (m)} - slides up or down.\line
+{\b Pan forward/backward (m)} - moves toward or away from the subject.\line
+{\b Zoom FOV (degrees)} - changes the field of view. Negative values zoom in.\line
+{\b Dolly Zoom} - the vertigo effect: the camera moves while the field of view compensates, so the subject keeps its size and the background appears to warp.\line
+{\b Crane (m)} - raises or lowers the camera while keeping the target framed.\line
+{\b Roll, Yaw, Tilt (degrees)} - rotate the camera itself.\line
+{\b Duration (s)} - how long this key takes to play.\line
+{\b Keep View (selected key)} - keeps the framing locked on the target while the camera travels.\par
+\pard\sa140\li0
+
+\b\fs28 9. Keys and the timeline\b0\fs22\par
+Each key is a bar in the TIMELINE card, its width proportional to its duration. Click a bar to select and edit that key, drag its edge to change the duration. The white line is a playhead: click to jump, drag to scrub.\par
+\pard\sa40\li360
+{\b Key Reverse} plays the selected key backwards. The move runs from its end pose back to its start pose, with the easing mirrored in time, and following keys continue from the start pose. Ticking it jumps the camera to the frame the reversed move now begins on.\line
+{\b Channel mute} - the eye icon in a colour bar switches that one channel off. The value stays stored and editable, and the key keeps its length.\line
+{\b Multi-selection} - hold Shift to select several keys. "Reset selected Keys" then resets only their timing.\line
+{\b Delete} - the Del key removes the selected key, as does "Delete Key". "Delete all Keys" clears the camera.\line
+{\b Continuity warning} - a yellow triangle marks a key whose start jumps compared to the end of the previous one. Select the key to read what causes it and how to fix it. It is a hint, not an error. Reverse keys are never flagged, because their jump is the point of the feature.\par
+\pard\sa140\li0
+
+\b\fs28 10. Easing and timing\b0\fs22\par
+Every key has an ease-in and an ease-out. The buttons cycle through four modes: Smooth, Linear, Slow and Fast. The colour of the flag in the key bar tells you which mode is active.\par
+Each side also has a phase length, shown as a small flag at the edge of the key bar. Drag it inward to say how long the ramp lasts; the middle of the move then runs at a constant speed. Dragging a flag fully back to the edge returns that side to automatic.\par
+
+\b\fs28 11. Shake and noise\b0\fs22\par
+Tick "Shake/Noise (selected Key)" to add a wobble to that key.\par
+\pard\sa40\li360
+{\b Strength} - how far the camera is displaced.\line
+{\b Speed} - how fast it wobbles.\line
+{\b Window} - "Full Length" shakes for the whole key, "Start" and "End" shake only at that edge, for the length you set next to it.\line
+{\b Preview (GameView)} - plays the shake on its own so you can dial it in. The Scene View watches the camera from outside, so the wobble is only visible through the camera, that is, in the Game View.\par
+\pard\sa140\li0
+
+\b\fs28 12. Building a trailer: the sequence\b0\fs22\par
+A sequence chains cameras into one continuous trailer. In LITE it holds two shots.\par
+\pard\sa40\li360
+12.1  Select both cameras in the Hierarchy and press {\b + Add selected cameras}. Each becomes a shot in the strip.\line
+12.2  Drag a camera key sideways to reorder the shots. The transition belongs to the shot it leads into and travels with it.\line
+12.3  Click the green {\b +} between the two camera keys to insert a transition (see section 13).\line
+12.4  Press {\b Play Sequence} to watch the whole trailer in the editor.\par
+\pard\sa140\li0
+A shot shown in grey refers to a camera in a scene that is not loaded, or to a camera without keys. Grey shots are skipped during playback and baking. Select one and press Del to remove it.\par
+
+\b\fs28 13. Transitions\b0\fs22\par
+\pard\sa40\li360
+{\b Cut} - instant change, no blend.\line
+{\b Linear} - even pose blend.\line
+{\b Ease In} - starts slowly, ends fast.\line
+{\b Ease Out} - starts fast, ends slowly.\line
+{\b Ease In-Out} - gentle at both ends.\line
+{\b Fade Black} - fades out through black and back in.\par
+\pard\sa140\li0
+Drag a transition key sideways to change its duration, in steps of a tenth of a second. Clicking it opens a box where you can change the type or switch the transition back to Cut.\par
+The same box carries an {\b impact shake} for that transition: a short wobble anchored either at the cut itself or at the moment the blend lands. Anchored at the end, the shake runs into the start of the next camera move and fades out inside it. "Preview (GameView)" plays it on the landing camera.\par
+
+\b\fs28 14. Music\b0\fs22\par
+Drop an audio clip into the AUDIO card. Drag the waveform sideways to shift the music against the picture. The clip plays along with Play and Play Sequence, scheduled and drift-corrected so it stays in sync. It ends up in your recording if your Recorder preset captures audio.\par
+
+\b\fs28 15. Baking to an AnimationClip\b0\fs22\par
+Baking writes a normal AnimationClip and an AnimatorController onto the camera, so the result is ordinary Unity animation that plays with or without this tool.\par
+\pard\sa40\li360
+{\b Bake FPS} - the sampling rate of the baked clip.\line
+{\b Output} - the folder the clip and controller are written to. It is created if it does not exist.\line
+{\b The button adapts:} with no sequence it reads "Bake Camera Animation" and bakes the selected camera. With shots in the sequence it reads "Bake Trailer Animation" and bakes the whole trailer onto a generated camera called CineShot Trailer Camera, which it then activates so it is the one you record.\line
+{\b The status light} next to the button: red means nothing has been baked yet, yellow means you changed something since the last bake, green means the bake is current.\line
+{\b The line below} shows the exact length and frame count of the baked clip. That frame count is the number the Recorder wants as its end frame.\par
+\pard\sa140\li0
+
+\b\fs28 16. Recording to video\b0\fs22\par
+Recording is done by Unity's Recorder, not by CineShot, so you keep full control over format and quality.\par
+\pard\sa40\li360
+16.1  Bake first (step 1). The status light must be green.\line
+16.2  Press {\b Open Recorder}. Unity's Recorder window comes up. If the status light was red or yellow, CineShot warns you first, because you would otherwise record the wrong camera or an outdated clip.\line
+16.3  In the Recorder window set your output folder, format, resolution and frame rate, enter the frame count from step 1 as the end frame, and press Record.\par
+\pard\sa140\li0
+CineShot never changes your Recorder settings. It only opens the window.\par
+
+\b\fs28 17. Where your data lives\b0\fs22\par
+Camera moves, sequences, the music selection and the output folder are stored per project in {\f1 <ProjectRoot>/UserSettings/CineShotData.json}. The file is written atomically and keeps a backup copy.\par
+{\f1 UserSettings/} is a Unity convention for per-machine settings and is normally excluded from version control, so camera moves are not shared with teammates automatically. To share or archive them, copy that file, commit it deliberately, or use the export described in section 18.\par
+Cameras are referenced by GlobalObjectId, which includes the scene GUID. Duplicating a scene or turning a camera into a prefab produces a new id, and the tool treats the result as a new camera.\par
+
+\b\fs28 18. Export and import\b0\fs22\par
+The Data row exports the complete state (camera moves, the sequence, the music selection) to a JSON file of your choosing, and imports such a file back.\par
+Import merges rather than overwrites: entries are matched by GlobalObjectId, so a camera present in both is replaced and everything else is left alone. The sequence is only replaced if the file contains one, and the music clip only if it can be resolved in the project.\par
+
+\b\fs28 19. The demo scenes\b0\fs22\par
+The demo ships once per render pipeline, because a material binds to exactly one shader. Use the folder matching your project:\par
+\pard\sa40\li360
+{\f1 CineShot Setup LITE/HDRP/Scenes/DemoScene}\line
+{\f1 CineShot Setup LITE/URP/Scenes/DemoScene}\line
+{\f1 CineShot Setup LITE/Built-In/Scenes/DemoScene}\par
+\pard\sa140\li0
+Open that scene, then press {\b Data > Import...} in the tool window and pick the {\f1 DemoScene_CineShotData.json} sitting next to it. That loads two ready-made camera moves, a 120 degree orbit with a slight crane and a dolly push with a tele zoom, joined into a two-shot sequence by an Ease-In blend. Press Play Sequence to watch it, or click either demo camera to inspect its keys.\par
+Both demo cameras already carry a move, so the LITE camera limit is reached inside the demo scene. That is intentional: the demo is there to be watched and taken apart. In a scene of your own you start at zero.\par
+The two folders for the other pipelines contain nothing but their own demo scene and materials. Their materials cannot resolve their shader in your pipeline and will show up pink, so either deselect those folders on import or delete them afterwards. The tool itself is unaffected.\par
+
+\b\fs28 20. Troubleshooting\b0\fs22\par
+{\b "The LITE version lets you author camera moves on up to 2 cameras."}\line
+Two cameras already carry a move. Delete the keys of one of them, work in another scene, or move up to the full version. Cameras without a CineShot move do not count.\par
+{\b The Record step is greyed out.}\line
+The Unity Recorder package is not installed. Hover the button, the tooltip says so.\par
+{\b I imported the demo data but nothing appears.}\line
+Make sure the matching demo scene is the open scene. The data is bound to the cameras of that specific scene.\par
+{\b Nothing was recorded.}\line
+Recording is driven entirely by the Recorder window. Check that exactly one recorder is enabled and valid there, and that the start and end frames are set.\par
+{\b I change a camera's Field of View and nothing happens.}\line
+Field of view is a driven value here: on the baked trailer camera it is controlled by the Animator, on the main camera by the CinemachineBrain. Use the Zoom FOV slider and bake, or set it on the source camera's lens before baking.\par
+{\b "CinemachineFocusDistanceCompute.compute not found".}\line
+HDRP auto-focus needs Cinemachine's HDRP sample. Import it via {\f1 Package Manager > Cinemachine > Samples}. Everything except auto-focus works without it.\par
+{\b The window is empty.}\line
+The {\f1 .uxml} and {\f1 .uss} files must sit next to the assembly in the {\f1 Editor} folder. If they were separated, the console says so.\par
+{\b Cinemachine's camera frusta disappeared from my Scene View.}\line
+That is intentional: while the window is open, CineShot hides them so they do not fight its own calm game frame. The original gizmo settings are stored and restored when you close the window.\par
+
+\b\fs28 21. Known limitations\b0\fs22\par
+\pard\sa40\li360
+One look-at target per camera timeline (switch targets by cutting to a second camera).\line
+Fade Black is currently the only overlay transition effect.\line
+Authored data lives in {\f1 UserSettings/} and is therefore not shared through version control by default.\line
+Two cameras and two sequence shots, as described in section 2.\par
+\pard\sa140\li0
+
+\b\fs28 22. License and support\b0\fs22\par
+Free for personal and commercial projects. Redistribution or resale of the tool itself is not permitted; anything you create with it is entirely yours. See {\f1 LICENSE.md} next to this document.\par
+Bug reports and feature requests are welcome. Please include your Unity version, render pipeline, Cinemachine version, and whether the Unity Recorder is installed.\par
+}
