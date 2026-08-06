@@ -1,4 +1,4 @@
-# License — CineShot Setup LITE
+# License - CineShot Setup LITE
 
 Copyright (c) 2026 Wadim Beier
 
@@ -16,7 +16,7 @@ projects, including games you sell.
   own or as part of an asset pack, template or tool collection;
 * remove or obscure the authorship notice.
 
-Videos, trailers and any other output you create **with** the tool are entirely yours — no
+Videos, trailers and any other output you create **with** the tool are entirely yours - no
 attribution required, no strings attached.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
