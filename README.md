@@ -2,6 +2,9 @@
 
 **Free camera-move and trailer authoring inside the Unity 6 editor. Requires Cinemachine 3.**
 
+**[Download the latest release](../../releases/latest)** and drop the `.unitypackage` into your
+Unity 6 project. Nothing else in this repository is needed to use the tool.
+
 Build a camera move with sliders, shape its timing on a key timeline, cut cameras into a sequence
 with transitions and impact shake, bake it to an AnimationClip, then hand it to Unity's Recorder
 for an MP4. No timeline wrangling, no keyframe fiddling.
