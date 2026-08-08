@@ -2,6 +2,10 @@
 
 All notable changes to **CineShot Setup LITE** are documented here.
 
+## [Unreleased]
+
+Nothing yet. Fixes and changes made after 1.0.0 are collected here until the next release.
+
 ## [1.0.0] - Initial release
 
 Camera-move authoring for Unity 6, requires Cinemachine 3.
