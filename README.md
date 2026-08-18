@@ -90,6 +90,13 @@ Ease In / Ease Out / Ease In-Out / Fade Black). Drag a transition key sideways t
 drag a camera key sideways to reorder the shots; `Del` removes the selected key; **Delete All**
 clears the sequence in one undoable step.
 
+## Tutorial
+
+**[CineShot Setup - Tutorial (PDF)](CineShot%20Setup%20-%20Tutorial.pdf)**: 15 pages, from the first
+camera to the recorded trailer. Eight annotated workflow steps, plus reference pages that explain every
+card, slider, checkbox and button. Written for the full version, but the LITE edition has the same
+window and the same controls, only the two limits above differ.
+
 ## Demo scene
 
 One demo per render pipeline, pick the folder that matches your project:
